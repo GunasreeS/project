@@ -1,0 +1,48 @@
+{% extends 'html/head.html' %}
+{% block content %}
+{% load static %}
+<div class="container">
+<table class="table table-hover">
+	<tr>
+		<th>Sno</th>
+		<th>product name</th>
+		<th>product image</th>
+		<th>Price</th>
+				<th>Quantity</th>
+				<th>Amount</th>
+
+		<th>Actions</th>
+	</tr>
+	{% for i in info %}
+	<tr>
+		<td>{{forloop.counter}}</td>
+		<td>{{i.product.itemname}}</td>
+		<td><img src="{{i.product.image.url}}" width="20%" height="100px"></td>
+		<td>{{i.product.price}}</td>
+		<td><form method="POST" action="{% url 'quan' i.id %}">
+			{% csrf_token %}
+			<input type="submit" value="+" class="fas fa-plus-square fa-lg">
+		</form>
+		{{i.qunatity}}
+		<form method="POST" action="{% url 'req' i.id %}">
+			{% csrf_token %}
+			<input type="submit" value="-" class="fas fa-minus-square fa-lg">
+	    </form>
+	    </td>
+		<td>{{i.amount}}</td>
+		<td><a href="{% url 'remove' i.id %}" class="btn btn-info"> Remove</a>
+	</tr>
+	{% endfor %}
+	<tr>
+		<td></td>
+		<td>total</td>
+		<td></td>
+		<td>{{sum}}</td>
+		<td></td>
+		<td><a href="{% url 'checkout' %}" class="btn-danger">placeorder</a></td>
+	</tr>
+</table>
+</form>
+</div>
+
+{% endblock %}

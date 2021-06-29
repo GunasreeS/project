@@ -1,0 +1,21 @@
+{% extends 'html/head.html' %}
+{% block title %}CRUD OPERATION{% endblock %}
+{% block content %}
+<div class="row">
+		<div class="card col-md-12 mx-2">
+			<h3 class="p-3 bg-warning text-center text-light mt-3">category list</h3>
+			{% for i in data %}
+			<div class="col-lg-2">
+			    <tr>
+			    	<td>{{i}}</td>
+			    </tr>
+					<a href="{% url 'deletecat' i.id %}" class="btn btn-danger btn-block">delete</a>
+
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+
+		</div>
+{% endblock %}
+

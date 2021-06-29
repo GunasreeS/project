@@ -1,0 +1,68 @@
+
+{% extends 'html/head.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+{% load static %}
+<div class="container">
+			<a href="{% url 'carts' %}" class="btn btn-block-online btn-secondary">Back to cart</a>
+		<form method="post">
+				{% csrf_token %}
+				<h3 class="p-3 bg-secondary text-center text-white mt-3 borderless">card details</h3>
+				<table>
+					<tr>
+						<td>
+							<label>Card Number</label>
+							<input type="text" name="creditcardnumber" class="form-control" value="{{request.user.creditcardnumber}}" placeholder="Card Number">
+						</td>
+						<td>
+							<label>ExpYear</label>
+							<input type="text" name="Expyear" class="form-control" value="{{request.user.Expyear}}" placeholder="year">
+						</td>
+						<td>
+			<label>ExpMonth</label>
+			<input type="text" name="expmonth" class="form-control" value="{{request.user.expmonth}}" placeholder="Month">
+		</td>
+		<td>
+			<label>Cvv</label>
+			<input type="text" name="cvv" class="form-control" value="{{request.user.cvv}}" placeholder="Cvv Number">
+		</td>
+	</tr>
+		
+</table>
+
+<h3>Your Cart</h3>
+			<table class="table table-striped table-hover table-borderless">
+				<tr class="bg-dark text-light">
+					<th>Itemtitle</th>
+					<th>price</th>
+					<th>Quantity</th>
+					<th>Amount</th>
+				</tr>
+				{% for i in cart %}
+				<tr>
+					<td>{{i.product.itemname}}</td>
+					<td>{{i.product.price}}</td>
+					<td>{{i.qunatity}}</td>
+					<td>{{i.amount}}</td>
+					<td></td>
+				</tr>
+				
+				{% endfor %}
+			</table>
+		<div class="container">
+			<table>
+				<tr>
+					<th>Shipping Charges:FREE</th>
+					<tr>
+					<th>Payable Amount:{{sum}}</th>
+				</tr>
+					<td>
+						<input type="submit" value="placeorder" class="btn btn-block btn-success">
+					</td>
+				</tr>
+			</table>
+			
+		</form>
+		</div>
+
+{% endblock %}

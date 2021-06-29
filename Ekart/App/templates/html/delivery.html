@@ -1,0 +1,36 @@
+{% extends 'html/head.html' %}
+{% block content %}
+{% load static %}
+<div class="row mt-3">
+    <div class="container">
+    <div class="">
+     <!-- <h4>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b>{{count}}</b></span></h4> -->
+   
+     <table class="table table-striped">
+     
+      <tr>
+      <th>ProductName</th>
+      <th>Price</th>
+      <th>Image</th>
+      <th>Quantity</th>
+      <th>Ordered Date</th>
+      <th>Actions</th>
+     
+      </tr>
+      {% for info in de %}
+      <tr>
+         <td>{{info.pname}}</td>
+         <td><span class="price">Rs.{{info.price}}</span></td>
+         <td><img src="{{info.im.url}}" width="40%" height="200px"></td>
+         <td>{{info.qunatity}}</td>
+         <td><span class="Date">{{info.date}}</span></td>
+               <td>  <a href="{% url 'deli' info.id %}" class="btn btn-info">Delivery</a></td>
+
+       </tr>
+       {% endfor %}
+        </table>
+     
+</div>
+</div>
+  </div>
+{% endblock %}

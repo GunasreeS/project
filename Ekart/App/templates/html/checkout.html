@@ -1,0 +1,52 @@
+
+{% extends 'html/head.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+{% load static %}
+
+<div class="row">
+		<div class="col-lg-8">
+			<div class="box-element" id="form-wrapper">
+				<form method="POST">
+					{% csrf_token %}
+					<div class="form-field">
+							<input class="form-control" type="text" id="name" name="name"
+							 value="{{request.user.username}}" placeholder="Name">
+						</div>
+						<div class="form-field">
+							<input class="form-control" type="email" id="email" name="email"
+							value="{{request.user.email}}" placeholder="Email">
+						</div>
+						
+										
+					<div id="shipping-info">
+						<hr>
+						<p>Shipping Information:</p>
+						<hr>
+						<div class="form-field">
+							<input class="form-control" type="text" name="phno" value="{{request.user.phno}}" placeholder="phone number...">
+						</div>
+						
+						<div class="form-field">
+							<input class="form-control" type="text" name="address" value="{{request.user.address}}" placeholder="Address..">
+						</div>
+						<div class="form-field">
+							<input class="form-control" type="text" name="city" value="{{request.user.city}}" placeholder="City..">
+						</div>
+						<div class="form-field">
+							<input class="form-control" type="text" name="state" value="{{request.user.state}}" placeholder="State..">
+						</div>
+						<div class="form-field">
+							<input class="form-control" type="text" name="pin" value="{{request.user.pin}}" placeholder="Zip code..">
+						</div>
+						</div>
+
+					<hr>
+					<input type="submit" value="Continue" class="btn btn-block btn-success">
+				</form>
+			</div>
+			
+		</div>
+
+		
+{% endblock %}

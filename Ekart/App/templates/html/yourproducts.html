@@ -1,0 +1,27 @@
+{% extends 'html/head.html' %}
+{% block title %}CRUD OPERATION{% endblock %}
+{% block content %}
+<div class="row">
+		<div class="card col-md-12 mx-2">
+			<h3 class="p-3 bg-warning text-center text-light mt-3">Item added</h3>
+			{% for i in data %}
+			<div class="col-lg-2">
+				<img class="thumbnail" src="{{i.image.url}}" height="100px" width="80%">
+				<div class="box-element product">
+					<h6>{{i.itemname}}</h6>
+					<h4>{{i.price}}</h4>
+					<form method="POST" action="{% url 'uppro' i.id %}">
+						{% csrf_token %}
+					<input type="submit" class=" form-control btn btn-primary btn-block" value="update" >
+				</form>
+					<a href="{% url 'delete' i.id %}" class="btn btn-danger btn-block">delete</a>
+
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+
+		</div>
+{% endblock %}
+

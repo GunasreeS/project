@@ -1,0 +1,58 @@
+
+{% extends 'html/head.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+{% load static %}
+{% if messages %}
+  {% for j in messages %}
+  <div class="alert alert-{{j.tags}} alert-dismissible">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  {{j}}
+</div>
+  {% endfor %}
+{% endif %}
+<div class="bg-image"
+  style="background-image:url('images/po.jpg');background-repeat:no-repeat;background-size:100% ;height:100%">  
+
+<div class="card-body">
+ <style>
+  /* Make the image fully responsive */
+  .carousel-inner img {
+    width: 100%;
+    height: 400px;
+  }
+  </style>
+<div id="demo" class="carousel slide " data-ride="carousel">
+
+  <!-- Indicators -->
+  <ul class="carousel-indicators">
+    <li data-target="#demo" data-slide-to="0" class="active"></li>
+    <li data-target="#demo" data-slide-to="2"></li>
+  </ul>
+  
+  <!-- The slideshow -->
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="{% static 'images/logo5.jpg' %}" width="100%" height="50px">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'images/logo3.jpg' %}"  width="100%" height="50px">
+    </div>
+  </div>
+  
+  <!-- Left and right controls -->
+  <a class="carousel-control-prev" href="#demo" data-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </a>
+  <a class="carousel-control-next" href="#demo" data-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </a>
+</div>
+
+</body>
+</html>
+
+
+</div>
+</div>
+{% endblock %}

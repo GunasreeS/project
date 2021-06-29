@@ -1,0 +1,50 @@
+
+{% extends 'html/head.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+{% load static %}
+{% if not user.is_authenticated %}
+<div class="container">
+<div class="row">
+
+		{% for i in info %}
+		<div class="card col-md-3 mb-3 my-1 mx-auto">
+	
+		<img class="thumbnail" src="{{i.image.url}}" height="300px" width="100%">
+	<div class="text-center box-element product">
+		<h6>{{i.itemname}}</h6>
+		<hr>
+		<h4>price: {{i.price}}</h4>
+			<a href="{% url 'lg' %}" class="form-control my-2 col-sm btn btn-success">Add to cart</a>
+	</div>
+</div>
+    {% endfor %}
+</div>
+    {% include 'html/pagination.html' with page=info %}
+</div>
+</div>	
+{% else %}
+<div class="container">
+<div class="row">
+
+		{% for i in info %}
+		<div class="card col-md-3 mb-3 my-1 mx-auto">
+	
+		<img class="thumbnail" src="{{i.image.url}}" height="300px" width="100%">
+	<div class="text-center box-element product">
+		<h6>{{i.itemname}}</h6>
+		<hr>
+		<h4>price: {{i.price}}</h4>
+		<form method="POST" action="{% url 'addcart' i.id %}">
+			{% csrf_token %}
+			<input type="submit" value="Add to cart" class="form-control my-2 col-sm btn btn-success">
+		</form>
+	</div>
+</div>
+    {% endfor %}
+</div>
+    {% include 'html/pagination.html' with page=info %}
+</div>
+</div>
+{% endif %}	
+{% endblock %}

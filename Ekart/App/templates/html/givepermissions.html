@@ -1,0 +1,44 @@
+{% extends 'html/head.html' %}
+{% block title %}Permissions{% endblock %}
+{% block content %}
+  <div class = "container">
+  <div class = "card col-md-6 mx-auto mt-5 shadow-lg">
+    <div class="card-body">
+			<h3>User Permissions</h3>
+			<table class="table table-borderless">
+				<tr>
+					<th>S.no</th>
+					<th>Username</th>
+					<!-- <th>Roles</th> -->
+					<th>Permissions</th>
+				</tr>
+				{% for j in q %}
+				<tr>
+					<td>{{forloop.counter}}</td>
+					<td>{{j.uname}}</td>
+				<!-- 	<td>
+						{% if j.username.is_superuser %}
+						<span class="badge badge-pills badge-warning">Admin</span>
+						{% elif j.role == 1 %}
+						<span class="badge badge-pills badge-warning">Coordinator</span>
+						{% elif j.role == 2 %}
+						<span class="badge badge-pills badge-warning">Student</span>
+						{% else %}
+						<span class="badge badge-pills badge-warning">Guest</span>
+						{% endif %}
+					<!-- {{j.role}}</ -->
+				</td>
+ -->					<td colspan="3">
+						<a href="{% url 'gvpr' j.uid_id %}" class="btn btn-success">Accept</a>
+						<!-- <a href="#" class="btn btn-danger">Decline</a>
+						 -->
+					</td>
+				</tr>	
+				{% endfor %}
+						</table>
+				
+	</div>
+</div>
+</div>
+
+{% endblock %} 

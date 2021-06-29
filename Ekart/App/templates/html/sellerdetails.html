@@ -1,0 +1,21 @@
+{% extends 'html/head.html' %}
+{% block title %}CRUD OPERATION{% endblock %}
+{% block content %}
+<div class="card col-md-7 mx-2">
+	<table class="table table-hover">
+		<tr>
+			<th>Sno</th>
+		    <th>seller name</th>
+		    <th>email</th>
+		</tr>
+	{% for i in se %}
+	<tr>
+		<td>{{forloop.counter}}</td>
+		<td>{{i.username}}</td>
+		<td>{{i.email}}</td>
+	</tr>
+	{% endfor %}
+</table>
+
+		</div>
+{% endblock %}

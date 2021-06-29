@@ -1,0 +1,222 @@
+{% load static %}
+<nav class="navbar navbar-expand-md bg-warning ">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <style type="text/css">
+    
+    a{
+     color:grey;
+    }
+  </style>
+  
+  <!-- Brand/logo -->
+   <a class="navbar-brand" href="#">
+    <img src="{% static 'images/shop.jpg' %}"  style="width:40px;">
+  </a>
+  <a class="navbar-brand" href="{% url 'home' %}">Ekart</a>
+  
+  <!-- Links -->
+  <div class="collapse navbar-collapse" id="collapsibleNavbar" >
+   <ul class="navbar-nav">
+    {% if not user.is_authenticated %}
+    <li class="dropdown">
+     <a type="button" class="nav-link dropdown-toggle" data-toggle="dropdown">select category
+  </a>
+
+   <ul class="navbar-nav">
+  <div class="dropdown-menu">
+   
+    {% for i in data %}
+    <li>
+      
+       <a href="{% url 'store' i.id %}" class="dropdown-item">{{i.cname}}</a>
+  
+     </li>
+      {% endfor %}
+      </div>
+    </li>
+  </ul>
+</ul>
+   <ul class="navbar-nav ml-auto" style="margin-right: 180px">
+   <li>
+        <form class="form-inline four" action="/search">
+          <input class="form-control" name="q" placeholder="search product" type="search" aria-label="search" style="padding-left: 50px;font-size: 15px" >
+          <button class="btn btn-dark my-2 my-sm-0" type="submit" >search</button>
+        </form>
+      </li>
+    
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'lg' %}">Login</a>
+    </li>
+  </ul>
+    
+    <ul class="navbar-nav">
+    {% elif user.role == 1 %}
+    <li class="dropdown">
+     <a type="button" class="nav-link dropdown-toggle" data-toggle="dropdown">select category
+  </a>
+
+   <ul class="navbar-nav">
+  <div class="dropdown-menu">
+   
+    {% for i in data %}
+    <li>
+      
+       <a href="{% url 'store' i.id %}" class="dropdown-item">{{i.cname}}</a>
+  
+     </li>
+      {% endfor %}
+      </div>
+    </ul>
+  </li>
+     <li class="nav-item">
+      <a class="nav-link" href="{% url 'rr' %}">join us</a>
+    </li>
+</ul>
+   <ul class="navbar-nav ml-auto" style="margin-right: 180px">
+   <li>
+        <form class="form-inline four" action="/search">
+          <input class="form-control" name="q" placeholder="search product" type="search" aria-label="search" style="padding-left: 50px;font-size: 15px" >
+          <button class="btn btn-dark my-2 my-sm-0" type="submit" >search</button>
+        </form>
+      </li>
+     
+    <li class="dropdown">
+      <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">{{user.username}}</a>
+    <div class="dropdown-menu">
+      <a class="dropdown-item"  href="{% url 'pro' %}">profile</a>
+          <a class="dropdown-item" href="{% url 'cg' %}">change password</a>
+      <a class="dropdown-item"  href="{% url 'logo' %}">Logout</a>
+    </div>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'carts' %}">Cart:{{count}}</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'myorders' %}">Myorders</a>
+      </li>
+  </ul>
+    {% elif user.role == 2 %}
+    
+    <li class="nav-item">
+      <a class="nav-link"  href="{% url 'product' %}">Add product</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link"  href="{% url 'yrpro' %}">yourproducts</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link"  href="{% url 'delivery' %}">Delivery</a>
+    </li>   
+    </ul>
+  <ul class="navbar-nav ml-auto" style="margin-right: 180px">
+    <li class="dropdown">
+      <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">{{user.username}}</a>
+    <div class="dropdown-menu">
+      <a class="dropdown-item"  href="{% url 'pro' %}">profile</a>
+          <a class="dropdown-item" href="{% url 'cg' %}">change password</a>
+      <a class="dropdown-item"  href="{% url 'logo' %}">Logout</a>
+    </div>
+    </li>
+     
+</ul>
+<ul class="navbar-nav">
+  {% elif user.is_superuser %}
+  <li class="dropdown">
+     <a type="button" class="nav-link dropdown-toggle" data-toggle="dropdown">select category
+  </a>
+
+   <ul class="navbar-nav">
+  <div class="dropdown-menu">
+   
+    {% for i in data %}
+    <li>
+      
+       <a href="{% url 'store' i.id %}" class="dropdown-item">{{i.cname}}</a>
+  
+     </li>
+      {% endfor %}
+      </div>
+    </ul>
+  </li>
+   <li class="nav-item">
+        <a class="nav-link" href="{% url 'perm' %}">Give Permissions</a>
+    </li>
+     <li class="nav-item">
+      <a class="nav-link"  href="{% url 'addcategory' %}">Add Category</a>
+    </li>
+    </li>
+     <li class="nav-item">
+      <a class="nav-link"  href="{% url 'viewcat' %}">view category</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link"  href="{% url 'seller' %}">sellerdetails</a>
+    </li>
+  
+  </ul>
+   <ul class="navbar-nav ml-auto" style="margin-right: 180px">
+   <li>
+        <form class="form-inline four" action="/search">
+          <input class="form-control" name="q" placeholder="search product" type="search" aria-label="search" style="padding-left: 50px;font-size: 15px" >
+          <button class="btn btn-dark my-2 my-sm-0" type="submit" >search</button>
+        </form>
+      </li>
+    <li class="dropdown">
+      <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">{{user.username}}</a>
+    <div class="dropdown-menu">
+      <a class="dropdown-item"  href="{% url 'pro' %}">profile</a>
+          <a class="dropdown-item" href="#">change password</a>
+      <a class="dropdown-item"  href="{% url 'logo' %}">Logout</a>
+    </div>
+    </li>
+     <li class="nav-item">
+        <a class="nav-link" href="{% url 'carts' %}">Cart:{{count}}</a>
+      </li>
+     
+</ul>
+  
+  {% else %}
+  <li class="nav-item">
+      <a class="navbar-brand" href="{% url 'home' %}">Ekart</a>
+      </li>
+    <li class="dropdown">
+     <a type="button" class="nav-link dropdown-toggle" data-toggle="dropdown">select category
+  </a>
+
+   <ul class="navbar-nav">
+  <div class="dropdown-menu">
+   
+    {% for i in data %}
+    <li>
+      
+       <a href="{% url 'store' i.id %}" class="dropdown-item">{{i.cname}}</a>
+  
+     </li>
+      {% endfor %}
+      </div>
+    
+     <li class="nav-item">
+      <a class="nav-link" href="{% url 'rr' %}">join us</a>
+    </li>
+    
+    <ul class="navbar-nav ml-auto" style="margin-right: 180px">
+    <li class="dropdown">
+      <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">{{user.username}}</a>
+    <div class="dropdown-menu">
+      <a class="dropdown-item" href="{% url 'pro' %}">profile</a>
+          <a class="dropdown-item" href="#">change password</a>
+      <a class="dropdown-item"  href="{% url 'logo' %}">Logout</a>
+    </div>
+    </li>
+     <li class="nav-item">
+        <a class="nav-link" href="{% url 'carts' %}">Cart:{{count}}</a>
+      </li>
+     
+</ul>
+  
+     
+    
+
+      {% endif %}
+    </div>
+</nav>
